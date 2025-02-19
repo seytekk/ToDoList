@@ -3,5 +3,5 @@ from .models import Task
 
 
 def get_tasks(request):
-    tasks = Task.objects.filter(title='Решить задачу')
-    return render(request, 'base.html', {'tasks': tasks})
+    tasks = Task.objects.all()
+    return render(request, 'cards.html', {'tasks': tasks})
