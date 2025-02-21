@@ -20,15 +20,17 @@
     <div class="mb-5">
         <div class='btn-toolbar'>
 <!--            Update card-->
-            <a method="post" href="">
+            <form method="POST" action="{% url 'update_task' task.id%}">
+                {% csrf_token %}
                 <button class="btn btn-success"
                         type="submit">Update
                 </button>
-            </a>
+            </form>
+            
 
 <!--            Delete card-->
-            <form method="post"
-                  action="">
+            <form method="POST"
+                  action="{% url 'delete_task' task.id %}">
                 {% csrf_token %}
                 <button class='btn btn-danger' type='submit'>
                     Delete
