@@ -20,12 +20,12 @@ def tasks(request):
     tasks = Task.objects.all()
     return render(request, 'cards.html', {'tasks': tasks})
 
+
 def delete_task(request,task_id):
     if request.method == "POST":
         task=get_object_or_404(Task,id=task_id)
         task.delete()
         return redirect('/')
-        
 
 
 def update_task(request, task_id):
