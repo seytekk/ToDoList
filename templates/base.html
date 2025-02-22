@@ -16,22 +16,7 @@
 
 {% block content %}
 {% endblock content %}
-<div class="container">
-    <h1>Add the Task</h1>
-    <form action="/" method="POST">
-        {% csrf_token %}
-        <label for="content">Content:</label>
-        <input type="text" name="content" id="content" required><br>
 
-        <label for="description">Description:</label>
-        <textarea name="description" id="description" required></textarea><br>
-
-        <label for="time">Time:</label>
-        <input type="datetime-local" name="time" id="time" required><br>
-
-        <input type="submit" value="Add Item">
-    </form>
-</div>
 </body>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
