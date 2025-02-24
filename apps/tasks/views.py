@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect
 from .models import Task
 from datetime import datetime
 from django.shortcuts import get_object_or_404
-from django.http import JsonResponse
+from django.contrib.auth import logout
 
 
 
@@ -65,3 +65,6 @@ def update_task(request, task_id):
 def new_page(request):
     return render(request, 'create.html')
 
+def logoutt(request):
+    logout(request)
+    return redirect('/')
