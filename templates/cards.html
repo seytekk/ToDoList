@@ -1,43 +1,28 @@
 {% extends 'base.html' %}
 
 {% block content %}
-<div>
-    {% for task in tasks %}
-    <div class="mb-1">
-        <h3>{{ task.title }}</h3>
-        <div class="row container d-flex justify-content-center">
-            <div class="col-md-15">
-                <div class="card px-2">
-                    <div class="card-body">
-                        <p href="">{{ task.description }}<i
-                                class="input-helper"></i>
+<div class="container mt-4">
+    <div class="row">
+        {% for task in tasks %}
+        <div class="col-md-4">
+            <div class="card shadow-sm mb-3">
+                <div class="card-body">
+                    <h5 class="card-title">{{ task.title }}</h5>
+                    <p class="card-text">{{ task.description }}</p>
+                    <p class="text-muted">📅 {{ task.created_at }}</p>
+                    <div class="d-flex justify-content-between">
+                        <a href="{% url 'update_task' task.id %}" class="btn btn-sm btn-warning">
+                            ✏️ Edit
+                        </a>
+                        <form method="POST" action="{% url 'delete_task' task.id %}">
+                            {% csrf_token %}
+                            <button type="submit" class="btn btn-sm btn-danger">🗑️ Delete</button>
+                        </form>
                     </div>
                 </div>
             </div>
-            <p>{{ task.created_at }}</p>
         </div>
+        {% endfor %}
     </div>
-    <div class="mb-5">
-        <div class='btn-toolbar'>
-<!--            Update card-->
-            <form method="POST" action="{% url 'update_task' task.id%}">
-                {% csrf_token %}
-                <button class="btn btn-success"
-                        type="submit">Update
-                </button>
-            </form>
-            
-
-<!--            Delete card-->
-            <form method="POST"
-                  action="{% url 'delete_task' task.id %}">
-                {% csrf_token %}
-                <button class='btn btn-danger' type='submit'>
-                    Delete
-                </button>
-            </form>
-        </div>
-    </div>
-    {% endfor %}
 </div>
 {% endblock content %}
